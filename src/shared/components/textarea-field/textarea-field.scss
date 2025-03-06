@@ -1,0 +1,112 @@
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/variables/fonts";
+
+.form-textarea-field {
+  position: relative;
+  width: 100%;
+
+  &__label {
+    margin-bottom: 8px;
+    font-size: 12px;
+    line-height: 1;
+    color: colors.$black-color;
+  }
+
+  &__wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    flex-flow: column;
+
+    &_focused {
+      .form-textarea-field__label {
+        color: colors.$blue-600;
+      }
+
+      .form-textarea-field__textarea {
+        border-color: colors.$blue-600;
+      }
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    top: 28px;
+    right: 8px;
+    display: flex;
+
+    &-icon {
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      background-color: colors.$blue-50;
+      transition: box-shadow 0.3s;
+
+      &:hover {
+        background-color: colors.$blue-50;
+        box-shadow: 4px 4px 12px 0 rgba(0, 87, 255, 0.45);
+        color: colors.$blue-600;
+      }
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+
+      :deep(.icon) {
+        color: colors.$black-color;
+        transition: color colors.$default-transition;
+
+        width: 18px;
+        height: 18px;
+      }
+
+      &._hide {
+        display: none;
+      }
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__textarea {
+    overflow-y: auto;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid colors.$gray-300;
+    font-size: 16px;
+    line-height: 1.25;
+    width: 100%;
+    height: 150px;
+
+    &:active,
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    &::placeholder {
+      font-size: 1.6rem;
+      line-height: 1;
+      color: colors.$gray-300;
+      transition: opacity 0.2s ease;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      width: 0.4rem;
+      background-color: colors.$gray-200;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: colors.$gray-100;
+    }
+  }
+}

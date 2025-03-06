@@ -1,0 +1,95 @@
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/variables/fonts";
+
+.description-generator {
+  &__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  &__header-activator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: colors.$indigo-50;
+    font-size: 16px;
+    color: colors.$white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  &__title {
+    text-align: center;
+    font-family: fonts.$added-font;
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__generate {
+    display: flex;
+    justify-content: end;
+  }
+
+  &__generate-btn {
+    max-width: 185px;
+    float: right;
+  }
+
+  &__response {
+    height: 150px;
+    padding: 24px;
+    border-radius: 8px;
+    background-color: colors.$indigo-50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.card-description-list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 20px;
+
+  &__item {
+    padding-left: 23px;
+
+    &-title {
+      position: relative;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 16px;
+
+      &--number {
+        position: absolute;
+        top: 50%;
+        left: -23px;
+        display: block;
+        margin-right: 12px;
+        color: colors.$blue-600;
+        transform: translateY(-50%);
+        font-weight: 700;
+        font-size: 18px;
+        font-family: fonts.$added-font;
+      }
+    }
+
+    &-description {
+      font-size: 14px;
+      line-height: 21px;
+      letter-spacing: 0.4px;
+    }
+  }
+}

@@ -1,0 +1,145 @@
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/variables/fonts";
+
+.ui-select {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+
+  &--opened {
+    .ui-select__arrow-icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__label {
+    margin-bottom: 4px;
+    color: colors.$neutral-600;
+    font-size: 14px;
+  }
+
+  &__field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid colors.$gray-300;
+    background-color: colors.$white;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 8px;
+    border-radius: 12px;
+    background-color: colors.$white;
+    box-shadow: -2px 3px 12px 0 #0f35a533;
+    transform: translateY(0);
+    transition: all 0.2s ease;
+
+    // @media (width <= 768px) {
+    //   display: none;
+    // }
+  }
+
+  &__placeholder {
+    flex-grow: 1;
+    margin-right: 16px;
+    white-space: nowrap;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: colors.$gray-400;
+  }
+
+  &__input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+    line-height: 1;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    font-size: 16px;
+
+    &::selection {
+      background: transparent;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__native {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+
+    @media (width <= 1024px) {
+      z-index: 2;
+      pointer-events: auto;
+    }
+  }
+
+  &__arrow {
+    display: flex;
+    align-items: center;
+    margin-left: 16px;
+  }
+
+  &__arrow-icon {
+    width: 16px;
+    height: 16px;
+    color: colors.$black-color;
+    transition: transform 0.2s ease;
+  }
+
+  &__scrollbox {
+    max-height: 24rem;
+  }
+}
+
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-0.8rem);
+}
+
+.ui-select-option {
+  padding: 8px;
+  border-radius: 7px;
+  color: colors.$black-color;
+  transition: color colors.$default-transition, background-color colors.$default-transition;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    background-color: colors.$indigo-50;
+  }
+
+  &._active {
+    background-color: colors.$indigo-50;
+  }
+
+  &._selected {
+    color: colors.$blue-500;
+  }
+}

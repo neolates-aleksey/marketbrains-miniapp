@@ -1,0 +1,178 @@
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/variables/fonts";
+
+.ui-button {
+  $button: &;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  border-radius: 30px;
+  outline: none;
+  transition: color colors.$default-transition, opacity colors.$default-transition, background-color colors.$default-transition,
+    border-color colors.$default-transition, box-shadow colors.$default-transition;
+  cursor: pointer;
+  user-select: none;
+
+  &__label {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+
+    transition: color colors.$default-transition, opacity colors.$default-transition, background-color colors.$default-transition,
+      border-color colors.$default-transition;
+  }
+
+  &._primary {
+    border: 1px solid colors.$blue-600;
+    background-color: colors.$blue-600;
+    box-shadow: 4px 4px 12px 0 #0057ff40;
+    color: colors.$white;
+
+    &:hover {
+      border-color: colors.$blue-500;
+      background-color: colors.$blue-500;
+      box-shadow: 4px 4px 12px 0 #0057ff40;
+    }
+
+    &._disabled {
+      border: 1px solid colors.$disable-bg;
+      background-color: colors.$disable-bg;
+      box-shadow: none;
+      color: colors.$blue-300;
+
+      &:hover {
+        border: 1px solid colors.$disable-bg;
+        background-color: colors.$disable-bg;
+      }
+    }
+  }
+
+  &._primary-white {
+    border: 1px solid colors.$white;
+    background-color: colors.$white;
+    box-shadow: 4px 4px 12px 0 #0057ff40;
+    color: colors.$blue-600;
+
+    &:hover {
+      border-color: colors.$blue-500;
+      color: colors.$blue-500;
+    }
+
+    &._disabled {
+      border: 1px solid colors.$disable-bg;
+      background-color: colors.$disable-bg;
+      box-shadow: none;
+      color: var(--blue-300);
+    }
+  }
+
+  &._secondary {
+    border-radius: 30px;
+    border: 1px solid colors.$blue-600;
+    background-color: colors.$white;
+    color: colors.$blue-600;
+
+    &:hover {
+      border-color: colors.$blue-500;
+      background-color: colors.$blue-50;
+      color: colors.$blue-500;
+    }
+
+    &._disabled {
+      border: 1px solid colors.$blue-300;
+      color: colors.$blue-300;
+    }
+  }
+
+  &._secondary-white {
+    border-radius: 30px;
+    border: 1px solid colors.$white;
+    color: colors.$white;
+
+    &:hover {
+      border-color: colors.$blue-500;
+      background-color: colors.$white;
+      color: colors.$blue-500;
+    }
+
+    &._disabled {
+      border: 1px solid colors.$white;
+      color: colors.$white;
+    }
+  }
+
+  &._tertiary {
+    padding: 8px 24px;
+    border-radius: 4px;
+    background-color: var(--indigo-50);
+    color: colors.$blue-600;
+
+    &:hover {
+      background-color: colors.$blue-50;
+    }
+
+    &._disabled {
+      color: colors.$blue-300;
+    }
+
+    &._active {
+      background-color: colors.$blue-50;
+    }
+  }
+
+  &._actions {
+    background-color: #f1f6fc;
+  }
+
+  &._disabled {
+    pointer-events: none;
+  }
+
+  &._loading {
+    pointer-events: none;
+
+    #{$button}__label,
+    #{$button}__icon {
+      opacity: 0;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1em;
+      border-radius: 50%;
+      border: 0.2em solid;
+      border-color: #000 #0000;
+      transform: translate(-50%, -50%) rotate(0.5turn);
+      animation: l1 1s infinite;
+      aspect-ratio: 1;
+    }
+  }
+
+  &._icon-left {
+    padding-left: 20px;
+  }
+
+  &._icon-right {
+    padding-right: 20px;
+  }
+
+  &__icon {
+    font-size: 20px;
+    color: currentcolor;
+
+    &._left {
+      margin-right: 8px;
+    }
+
+    &._right {
+      margin-left: 8px;
+    }
+  }
+}

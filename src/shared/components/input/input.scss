@@ -1,0 +1,122 @@
+@use "/src/shared/styles/variables/colors";
+@use "/src/shared/styles/variables/fonts";
+
+.input {
+  $input: &;
+
+  --input-transition: 0.2s ease;
+
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  color: var(--ui-black);
+
+  &._active {
+    #{$input}__label {
+      color: colors.$blue-500;
+    }
+
+    #{$input}__native {
+      border-color: colors.$blue-500;
+    }
+  }
+
+  &._readonly {
+    #{$input} {
+      &__label {
+        pointer-events: none;
+      }
+
+      &__native {
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &._error {
+    color: colors.$error-color;
+
+    #{$input} {
+      &__label {
+        color: colors.$error-color;
+      }
+
+      &__native {
+        border-color: colors.$error-color;
+      }
+
+      &__message {
+        color: colors.$error-color;
+      }
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+  }
+
+  &__label {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+    display: inline-flex;
+    padding-bottom: 4px;
+    color: colors.$gray-600;
+    color: colors.$font-color;
+    transition: color var(--input-transition);
+  }
+
+  &__native {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid colors.$gray-300;
+    background-color: var(--white);
+    font-size: 16px;
+
+    &:active,
+    &:focus {
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+
+    &::placeholder {
+      font-size: 1.6rem;
+      line-height: 1;
+      color: colors.$gray-300;
+      transition: opacity var(--input-transition);
+    }
+  }
+
+  &__password-button {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+  }
+
+  &__message {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    font-size: 20px;
+    color: currentcolor;
+    transform: translateY(-50%);
+  }
+
+  &__required-icon {
+    margin-left: 2px;
+    font-size: 6px;
+    color: colors.$red-600;
+  }
+}
