@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "@/shared/components/input/input";
 import Select from "@/shared/components/select/select";
 import TextareaField from "@/shared/components/textarea-field/textarea-field";
@@ -10,6 +10,8 @@ import Tooltip from "@/shared/components/tooltip/tooltip";
 import IconQuestion from "@/shared/components/icons/IconQuestion";
 import Loader from "@/shared/components/loader/loader";
 
+import { retrieveLaunchParams } from "@telegram-apps/sdk";
+
 const DescriptionGenerator = () => {
   const [productName, setProductName] = useState("");
   const [length, setLength] = useState("1000");
@@ -19,8 +21,23 @@ const DescriptionGenerator = () => {
   const [minusWords, setMinusWords] = useState("");
   const [response, setResponse] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [userPlatform, setUserPlatform] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const platform = retrieveLaunchParams().tgWebAppPlatform;
+      console.log(platform);
+
+      setUserPlatform(platform);
+    } catch {
+      setUserPlatform("unknown");
+    }
+  }, []);
 
   const handleProductNameChange = (newValue: string) => {
+    console.log();
+
     setProductName(newValue);
   };
 
@@ -45,20 +62,14 @@ const DescriptionGenerator = () => {
   };
 
   const isFormValid = () => {
-    return (
-      productName.trim() !== "" &&
-      length.trim() !== "" &&
-      textTone !== "" &&
-      generationQuery.trim() !== "" &&
-      keyWords.trim() !== "" &&
-      minusWords.trim() !== ""
-    );
+    return length.trim() !== "" && textTone !== "" && generationQuery.trim() !== "";
   };
 
   const handleSend = () => {
     if (!isFormValid()) return;
     setResponse(null);
     setIsLoading(true);
+    setHasError(false);
 
     const body = {
       advantages: generationQuery.split(" ").map((item) => item.trim()),
@@ -75,8 +86,9 @@ const DescriptionGenerator = () => {
       .then((res) => {
         setResponse(res.data.desc);
       })
-      .catch((er) => {
+      .catch(() => {
         setResponse(null);
+        setHasError(true);
       })
       .finally(() => {
         setIsLoading(false);
@@ -88,6 +100,23 @@ const DescriptionGenerator = () => {
       navigator.clipboard.writeText(response);
       alert("Ответ скопирован в буфер обмена!");
     }
+  };
+
+  const createDownloadFileTXT = (_context: string) => {
+    const blob = new Blob([_context], { type: "text/plain" });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "generated-text.txt";
+    link.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownload = () => {
+    response && createDownloadFileTXT(response);
   };
 
   return (
@@ -117,7 +146,7 @@ const DescriptionGenerator = () => {
               </div>
               <div className="card-description-list__item">
                 <div className="card-description-list__item-title">
-                  <span className="card-description-list__item-title--number">1</span>
+                  <span className="card-description-list__item-title--number">3</span>
                   Тестируйте варианты и анализируйте их эффективность.
                 </div>
                 <p className="card-description-list__item-description">
@@ -176,13 +205,23 @@ const DescriptionGenerator = () => {
 
         {!response && (
           <div className="description-generator__response">
-            {isLoading ? <Loader isLoading={isLoading} /> : <p>Здесь будет описание сгенерированное по вашему запросу</p>}
+            {isLoading ? (
+              <Loader isLoading={isLoading} />
+            ) : hasError ? (
+              <p>Во время генерации произошла не известная ошибка, попробуйте еще раз</p>
+            ) : (
+              <p>Здесь будет описание сгенерированное по вашему запросу</p>
+            )}
           </div>
         )}
 
         {response && <TextareaField label="" placeholder="" value={response} onChange={() => console.log()} />}
 
         <Button className="description-generator__copy-btn" onClick={handleCopy} label="Скопировать" disabled={!response} />
+
+        {userPlatform === "tdesktop" && (
+          <Button className="description-generator__copy-btn" onClick={handleDownload} label="Скачать файл" disabled={!response} />
+        )}
       </div>
     </div>
   );

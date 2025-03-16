@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = `http://45.114.62.43/apis/gen/`;
+const baseURL = `https://marketbtest.online/apis/gen/`;
 
 const headersConfig = {
   "Access-Control-Allow-Origin": "*",
