@@ -26,10 +26,21 @@
       border-color colors.$default-transition;
   }
 
+  &._size-m {
+    height: 32px;
+    padding: 0 12px !important;
+
+    #{$button}__label {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 135%;
+      letter-spacing: 0;
+    }
+  }
+
   &._primary {
-    border: 1px solid colors.$blue-600;
-    background-color: colors.$blue-600;
-    box-shadow: 4px 4px 12px 0 #0057ff40;
+    border: 1px solid colors.$primary-blue;
+    background-color: colors.$primary-blue;
     color: colors.$white;
 
     &:hover {
@@ -163,16 +174,20 @@
     padding-right: 20px;
   }
 
+  &._icon-solo {
+    padding: 0 10px !important;
+  }
+
   &__icon {
-    font-size: 20px;
+    font-size: 15px;
     color: currentcolor;
 
-    &._left {
-      margin-right: 8px;
+    &_left {
+      margin-right: 6px;
     }
 
-    &._right {
-      margin-left: 8px;
+    &_right {
+      margin-left: 6px;
     }
   }
 }

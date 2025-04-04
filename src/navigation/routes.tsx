@@ -1,12 +1,15 @@
-import type { ComponentType, JSX } from "react";
+import type { JSX, ReactNode } from "react";
 
-import { IndexPage } from "@/pages/IndexPage/IndexPage";
+import { DescriptionPage, RepricerPage } from "@/pages/index";
 
 interface Route {
   path: string;
-  Component: ComponentType;
+  Component: ReactNode;
   title?: string;
   icon?: JSX.Element;
 }
 
-export const routes: Route[] = [{ path: "/", Component: IndexPage }];
+export const routes: Route[] = [
+  { path: "description", Component: <DescriptionPage /> },
+  { path: "/", Component: <RepricerPage /> },
+];

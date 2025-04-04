@@ -1,0 +1,35 @@
+@use "/src/shared/styles/variables/colors";
+
+.repricer-limits {
+  position: absolute;
+  bottom: 20px;
+  z-index: 5;
+  width: 100%;
+  padding: 0 8px;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid colors.$gray-200;
+    border-radius: 100px;
+    box-shadow: 0px 2px 8px 0px #00000014;
+    background-color: colors.$white;
+    width: 100%;
+    padding: 6px;
+  }
+
+  &__left-part {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__text {
+    font-family: Manrope;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 133%;
+    letter-spacing: 0px;
+  }
+}

@@ -19,9 +19,13 @@
     "@telegram-apps/telegram-ui": "^2.1.8",
     "@tonconnect/ui-react": "^2.0.5",
     "axios": "^1.8.1",
+    "classnames": "^2.5.1",
+    "effector": "^23.3.0",
+    "effector-react": "^23.3.0",
     "eruda": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal-sheet": "^4.0.1",
     "react-router-dom": "^6.23.0",
     "sass": "^1.85.1"
   },

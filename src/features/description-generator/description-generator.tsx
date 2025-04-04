@@ -200,6 +200,7 @@ const DescriptionGenerator = () => {
             variant="primary"
             label="Сгенерировать"
             disabled={!isFormValid() || isLoading}
+            size="xl"
           />
         </div>
 
@@ -217,10 +218,10 @@ const DescriptionGenerator = () => {
 
         {response && <TextareaField label="" placeholder="" value={response} onChange={() => console.log()} />}
 
-        <Button className="description-generator__copy-btn" onClick={handleCopy} label="Скопировать" disabled={!response} />
+        <Button className="description-generator__copy-btn" onClick={handleCopy} label="Скопировать" disabled={!response} size="xl" />
 
         {userPlatform === "tdesktop" && (
-          <Button className="description-generator__copy-btn" onClick={handleDownload} label="Скачать файл" disabled={!response} />
+          <Button className="description-generator__copy-btn" onClick={handleDownload} label="Скачать файл" disabled={!response} size="xl" />
         )}
       </div>
     </div>
