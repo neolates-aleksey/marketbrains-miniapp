@@ -1,3 +1,6 @@
+import { useUnit } from "effector-react";
+import { updateRepricerRouter } from "@/model";
+
 import Button from "@/shared/components/button/button";
 import IconPlus from "@/shared/components/icons/IconPlus";
 import IconDiagonalArrow from "@/shared/components/icons/IconDiagonalArrow";
@@ -10,6 +13,8 @@ type Props = {
 };
 
 const RepricerLimits = (props: Props) => {
+  const updateRouter = useUnit(updateRepricerRouter);
+
   return (
     <div className="repricer-limits">
       <div className="repricer-limits__container">
@@ -20,7 +25,18 @@ const RepricerLimits = (props: Props) => {
           </p>
         </div>
 
-        <Button size="m" label="Создать" iconRight={<IconPlus />} />
+        <Button
+          onClick={() =>
+            updateRouter({
+              route_type: "create",
+              is_active: true,
+              current_step: 1,
+            })
+          }
+          size="m"
+          label="Создать"
+          iconRight={<IconPlus />}
+        />
       </div>
     </div>
   );

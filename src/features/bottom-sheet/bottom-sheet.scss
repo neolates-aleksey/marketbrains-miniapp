@@ -1,0 +1,23 @@
+.react-modal-sheet-container {
+  min-height: 368px;
+  box-shadow: none !important;
+  padding: 20px 16px;
+}
+
+.react-modal-sheet-header {
+  display: none !important;
+}
+
+.react-modal-sheet-backdrop {
+  background-color: #9ea5b7cc !important;
+}
+
+.bottom-sheet {
+  position: relative;
+
+  &__close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}

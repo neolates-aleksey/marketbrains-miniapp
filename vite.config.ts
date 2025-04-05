@@ -23,4 +23,11 @@ export default defineConfig({
     // Exposes your dev server and makes it accessible for the devices in the same network.
     host: true,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ["legacy-js-api"],
+      },
+    },
+  },
 });

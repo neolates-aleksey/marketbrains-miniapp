@@ -39,7 +39,11 @@ const Input: React.FC<WBInputProps> = ({
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
   const isPasswordType = type === "password";
-  const inputType = isPasswordType ? (isPasswordVisible ? "text" : "password") : type;
+  const inputType = isPasswordType
+    ? isPasswordVisible
+      ? "text"
+      : "password"
+    : type;
 
   const classList = {
     _active: isFocused,
@@ -98,7 +102,12 @@ const Input: React.FC<WBInputProps> = ({
           disabled={disabled}
         />
         {isPasswordType && !isReadonly && (
-          <button type="button" className="input__password-toggle" onClick={togglePasswordVisibility} tabIndex={-1}>
+          <button
+            type="button"
+            className="input__password-toggle"
+            onClick={togglePasswordVisibility}
+            tabIndex={-1}
+          >
             {isPasswordVisible ? "👁️" : "👁️‍🗨️"}
           </button>
         )}
